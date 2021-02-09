@@ -1,4 +1,4 @@
-package org.bolikov.pattern.message.parameters;
+package org.bolikov.pattern.entity.parameters;
 
 import java.util.Date;
 

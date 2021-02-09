@@ -1,21 +1,24 @@
-package org.bolikov.pattern;
+package org.bolikov.pattern.entity;
 
 public class Person {
 
-    private Long id;
+    private String uuid;
     private String login;
     private String password;
     private String email;
 
-    public Person(Long id, String login, String password, String email) {
-        this.id = id;
+    public Person() {
+    }
+
+    public Person(String uuid, String login, String password, String email) {
+        this.uuid = uuid;
         this.login = login;
         this.password = password;
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public String getUuid() {
+        return uuid;
     }
 
     public String getLogin() {
@@ -30,8 +33,8 @@ public class Person {
         return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String uuid) {
+        this.uuid = uuid;
     }
 
     public void setLogin(String login) {
