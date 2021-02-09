@@ -16,16 +16,19 @@ public class PersonMapper {
     }
 
     public Person findById(String uuid) throws SQLException {
+        Person person = IdentityMapPerson.getPerson(uuid);
+        if (person != null) return person;
         PreparedStatement statement = connection
                 .prepareStatement("SELECT uuid, login, password, email FROM person WHERE uuid = ?");
         statement.setString(1, uuid);
         try (ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                Person person = new Person();
+                person = new Person();
                 person.setId(resultSet.getString(1));
                 person.setLogin(resultSet.getString(2));
                 person.setPassword(resultSet.getString(3));
                 person.setEmail(resultSet.getString(4));
+                IdentityMapPerson.addPerson(person);
                 return person;
             }
         }
