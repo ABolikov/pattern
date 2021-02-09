@@ -1,10 +1,11 @@
 package org.bolikov.pattern;
 
-import org.bolikov.pattern.user_message.Issue;
+import org.bolikov.pattern.message.Issue;
+import org.bolikov.pattern.message.Message;
 
 public class App {
     public static void main(String[] args) {
-        Issue test = Issue.builder().setTitle("Тест").setBody("Тело").build();
-        System.out.println(test);
+        Message message = new Message();
+        message.send(Issue.builder().setTitle("Тест").setBody("Тело").build());
     }
 }

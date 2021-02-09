@@ -1,4 +1,4 @@
-package org.bolikov.pattern.user_message.parameters;
+package org.bolikov.pattern.message.parameters;
 
 public enum Category {
     AUTHORIZATION, REGISTRATION
