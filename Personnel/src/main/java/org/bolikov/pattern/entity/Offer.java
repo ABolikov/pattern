@@ -1,22 +1,24 @@
-package org.bolikov.pattern.message;
+package org.bolikov.pattern.entity;
 
-import org.bolikov.pattern.Person;
-import org.bolikov.pattern.message.parameters.Category;
-import org.bolikov.pattern.message.parameters.Priority;
-import org.bolikov.pattern.message.parameters.Tag;
+import org.bolikov.pattern.entity.parameters.Category;
+import org.bolikov.pattern.entity.parameters.Priority;
+import org.bolikov.pattern.entity.parameters.Tag;
+import org.bolikov.pattern.message.SendMessageStrategy;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Offer implements SendMessageStrategy {
 
+    private String number;
     private String title;
     private String body;
     private List<Category> categories;
     private List<Tag> tags;
     private Person user;
 
-    public Offer(String title, String body, List<Category> categories, List<Tag> tags, Person user) {
+    public Offer(String number, String title, String body, List<Category> categories, List<Tag> tags, Person user) {
+        this.number = number;
         this.title = title;
         this.body = body;
         this.categories = categories;
@@ -31,6 +33,7 @@ public class Offer implements SendMessageStrategy {
     @Override
     public String toString() {
         return "Offer{" +
+                "number='" + number + '\'' +
                 "title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", categories=" + categories +
@@ -46,6 +49,7 @@ public class Offer implements SendMessageStrategy {
     }
 
     public static class OfferBuilder {
+        private String number;
         private String title;
         private String body;
         private List<Category> categories;
@@ -56,6 +60,11 @@ public class Offer implements SendMessageStrategy {
         private Person executor;
 
         OfferBuilder() {
+        }
+
+        public Offer.OfferBuilder setNumber(String number) {
+            this.number = number;
+            return this;
         }
 
         public Offer.OfferBuilder setTitle(String title) {
@@ -94,7 +103,7 @@ public class Offer implements SendMessageStrategy {
         }
 
         public Offer build() {
-            return new Offer(this.title, this.body, this.categories, this.tags, this.user);
+            return new Offer(this.number, this.title, this.body, this.categories, this.tags, this.user);
         }
     }
 }

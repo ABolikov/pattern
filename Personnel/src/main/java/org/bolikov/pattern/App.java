@@ -1,6 +1,6 @@
 package org.bolikov.pattern;
 
-import org.bolikov.pattern.message.Issue;
+import org.bolikov.pattern.entity.Issue;
 import org.bolikov.pattern.message.Message;
 
 public class App {

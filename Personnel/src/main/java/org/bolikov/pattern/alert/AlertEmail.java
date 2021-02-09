@@ -1,6 +1,6 @@
 package org.bolikov.pattern.alert;
 
-import org.bolikov.pattern.Person;
+import org.bolikov.pattern.entity.Person;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;

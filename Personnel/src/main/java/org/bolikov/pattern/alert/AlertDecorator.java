@@ -1,6 +1,6 @@
 package org.bolikov.pattern.alert;
 
-import org.bolikov.pattern.Person;
+import org.bolikov.pattern.entity.Person;
 
 public class AlertDecorator implements Alert {
     private Person executor;

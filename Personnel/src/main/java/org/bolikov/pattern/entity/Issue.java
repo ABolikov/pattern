@@ -1,15 +1,16 @@
-package org.bolikov.pattern.message;
+package org.bolikov.pattern.entity;
 
-import org.bolikov.pattern.Person;
-import org.bolikov.pattern.message.parameters.Category;
-import org.bolikov.pattern.message.parameters.Priority;
-import org.bolikov.pattern.message.parameters.Tag;
+import org.bolikov.pattern.entity.parameters.Category;
+import org.bolikov.pattern.entity.parameters.Priority;
+import org.bolikov.pattern.entity.parameters.Tag;
+import org.bolikov.pattern.message.SendMessageStrategy;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Issue implements SendMessageStrategy {
 
+    private String number;
     private String title;
     private String body;
     private List<Category> categories;
@@ -19,8 +20,9 @@ public class Issue implements SendMessageStrategy {
     private Person user;
     private Person executor;
 
-    public Issue(String title, String body, List<Category> categories, List<Tag> tags,
+    public Issue(String number, String title, String body, List<Category> categories, List<Tag> tags,
                  Priority priority, Person user, Person executor) {
+        this.number = number;
         this.title = title;
         this.body = body;
         this.categories = categories;
@@ -37,6 +39,7 @@ public class Issue implements SendMessageStrategy {
     @Override
     public String toString() {
         return "Issue{" +
+                "number='" + number + '\'' +
                 "title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", categories=" + categories +
@@ -50,10 +53,11 @@ public class Issue implements SendMessageStrategy {
     @Override
     public void send() {
         //Формирование Алерта для отправки на почту
-        //Логика отправки самого сообщения в тех. поддержку на линию 1, для дальнешего распределения/обработки
+        //Логика отправки самого сообщения в тех. поддержку на линию 1, для дальнейшего распределения/обработки
     }
 
     public static class IssueBuilder {
+        private String number;
         private String title;
         private String body;
         private List<Category> categories;
@@ -64,6 +68,11 @@ public class Issue implements SendMessageStrategy {
         private Person executor;
 
         IssueBuilder() {
+        }
+
+        public Issue.IssueBuilder setNumber(String number) {
+            this.number = number;
+            return this;
         }
 
         public Issue.IssueBuilder setTitle(String title) {
@@ -102,7 +111,7 @@ public class Issue implements SendMessageStrategy {
         }
 
         public Issue build() {
-            return new Issue(this.title, this.body, this.categories, this.tags, this.priority, this.user, this.executor);
+            return new Issue(this.number, this.title, this.body, this.categories, this.tags, this.priority, this.user, this.executor);
         }
     }
 
